@@ -1,0 +1,74 @@
+﻿@model IEnumerable<InventoryMVC.Models.VendorOrders>
+
+<h2>Vendor Orders</h2>
+<p>For New Order<button type="button" class="btn-link">@Html.ActionLink("Click here", "AddOrder", "VendorOrders")</button></p>
+
+@if (!Model.Any())
+{
+    <p>We have no Order</p>
+}
+else
+{
+    <table class="table table-bordered table-hover" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Vendor ID
+                </th>
+                <th>
+                    Vendor Name
+                </th>
+                <th>
+                    Item ID
+                </th>
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Bill
+                </th>
+                <th>
+                    Order Date
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vendorOrders in Model)
+            {
+            <tr>
+                <td class="col-md-1">
+                    @vendorOrders.id
+                </td>
+                <td class="col-md-1">
+                    @vendorOrders.Vendors.id
+                </td>
+                <td class="col-md-2">
+                    @vendorOrders.Vendors.name
+                </td>
+                <td class="col-md-1">
+                    @vendorOrders.Items.id
+                </td>
+                <td class="col-md-2">
+                    @vendorOrders.Items.name
+                </td>
+                <td class="col-md-1">
+                    @vendorOrders.quantity
+                </td>
+                <td class="col-md-2">
+                    @vendorOrders.bill
+                </td>
+                <td class="col-md-2">
+                    @vendorOrders.date
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+}

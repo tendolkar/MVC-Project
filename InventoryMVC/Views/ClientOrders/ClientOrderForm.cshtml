@@ -1,0 +1,47 @@
+﻿@model InventoryMVC.Models.ViewModels.ClientOrderViewModel
+
+<h2>Client Order</h2>
+<div class="form-group">
+    @using (Html.BeginForm("Save", "ClientOrders"))
+    {
+        <div class="form-group">
+            <label>Client:</label>
+            @Html.DropDownListFor(m => m.ClientOrders.ClientsId, new SelectList(Model.Client, "id", "name"), "Select Client", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ClientOrders.ClientsId)
+        </div>
+        <div class="form-group">
+            <label>Item:</label>
+            @Html.DropDownListFor(m => m.ClientOrders.ItemsId, new SelectList(Model.Item, "id", "name"), "Select Item", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ClientOrders.ItemsId)
+        </div>
+        <div class="form-group">
+            <label>Quantity:</label>
+            @Html.TextBoxFor(m => m.ClientOrders.quantity, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ClientOrders.quantity)
+        </div>
+        <div class="form-group">
+            <label>Order Status:</label>
+            @Html.DropDownListFor(m => m.ClientOrders.status,  new List<SelectListItem>
+{
+    new SelectListItem{ Text="Pending", Value = "1" },
+    new SelectListItem{ Text="Delivered", Value = "2" },
+    new SelectListItem{ Text="Cancelled", Value = "3" },
+ },"Order Status", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ClientOrders.status)
+        </div>
+        <div class="form-group">
+            <label>Order Date:</label>
+            @Html.TextBoxFor(m => m.ClientOrders.date, "{0: d MMM yyyy HH:MM:ss}", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ClientOrders.date)
+        </div>
+        @Html.HiddenFor(m => m.ClientOrders.id)
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary">   Save   </button>
+    }
+
+</div>
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+}

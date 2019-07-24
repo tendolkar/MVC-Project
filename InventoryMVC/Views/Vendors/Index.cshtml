@@ -1,0 +1,43 @@
+﻿@model IEnumerable<InventoryMVC.Models.Vendors>
+
+
+<h2>Vendors</h2>
+
+@if (!Model.Any())
+{
+    <p>We have no Vendor</p>
+}
+else
+{
+    <table class="table table-bordered table-hover" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vendor in Model)
+            {
+                <tr>
+                    <td class="col-md-1">
+                        @vendor.id
+                    </td>
+                    <td class="col-md-9">
+                        @vendor.name
+                    </td>
+                    <td class="col-md-2" align="center">
+                        @Html.ActionLink("View", "Details", "Vendors", new { id = vendor.id }, null) |
+                        @Html.ActionLink("Edit", "Update", "Vendors", new { id = vendor.id }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Vendors", new { id = vendor.id }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

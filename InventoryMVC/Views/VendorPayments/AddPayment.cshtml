@@ -1,0 +1,33 @@
+﻿@model InventoryMVC.Models.ViewModels.VendorPaymentViewModel
+
+<h2>Vendor Payment</h2>
+<div class="form-group">
+    @using (Html.BeginForm("Save", "VendorPayments"))
+    {
+
+        <div class="form-group">
+            <label>Vendor:</label>
+            @Html.DropDownListFor(m => m.VendorPayments.VendorsId, new SelectList(Model.Vendor, "id", "name"), "Select Vendor", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.VendorPayments.VendorsId)
+        </div>
+        <div class="form-group">
+            <label>Amount Paid:</label>
+            @Html.TextBoxFor(m => m.VendorPayments.amountPaid, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.VendorPayments.amountPaid)
+        </div>
+        <div class="form-group">
+            <label>Payment Date:</label>
+            @Html.TextBoxFor(m => m.VendorPayments.datePaid, "{0: d MMM yyyy HH:MM:ss}", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.VendorPayments.datePaid)
+        </div>
+        @Html.HiddenFor(m => m.VendorPayments.id)
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary">   Save   </button>
+    }
+
+</div>
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<InventoryMVC.Models.Clients>
+
+
+<h2>Clients</h2>
+
+@if (!Model.Any())
+{
+    <p>We have no Client</p>
+}
+else
+{
+    <table class="table table-bordered table-hover" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model)
+            {
+                <tr>
+                    <td class="col-md-1">
+                        @client.id
+                    </td>
+                    <td class="col-md-9">
+                        @client.name
+                    </td>
+                    <td class="col-md-2" align="center">
+                        @Html.ActionLink("View", "Details", "Clients", new { id = client.id }, null) |
+                        @Html.ActionLink("Edit", "Update", "Clients", new { id = client.id }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Clients", new { id = client.id }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

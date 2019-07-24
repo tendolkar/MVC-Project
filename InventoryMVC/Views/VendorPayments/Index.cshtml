@@ -1,0 +1,63 @@
+﻿@model IEnumerable<InventoryMVC.Models.VendorPayments>
+
+<h2>Vendor Payments</h2>
+
+<p>
+    For New Payment
+    <button type="button" class="btn-link">
+        @Html.ActionLink("Click here", "AddPayment", "VendorPayments")
+    </button>
+</p>
+
+@if (!Model.Any())
+{
+    <p>We have no Record</p>
+}
+else
+{
+    <table class="table table-bordered table-hover" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Vendor ID
+                </th>
+                <th>
+                    Vendor Name
+                </th>
+                <th>
+                    Amount Paid
+                </th>
+
+                <th>
+                    Date Paid
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vendorPayments in Model)
+            {
+                <tr>
+                    <td class="col-md-1">
+                        @vendorPayments.id
+                    </td>
+                    <td class="col-md-1">
+                        @vendorPayments.Vendors.id
+                    </td>
+                    <td class="col-md-4">
+                        @vendorPayments.Vendors.name
+                    </td>
+                    <td class="col-md-3">
+                        @vendorPayments.amountPaid
+                    </td>
+                    <td class="col-md-3">
+                        @vendorPayments.datePaid
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

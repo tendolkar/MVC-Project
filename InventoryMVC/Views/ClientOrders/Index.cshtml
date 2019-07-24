@@ -1,0 +1,88 @@
+﻿@model IEnumerable<InventoryMVC.Models.ClientOrders>
+
+<h2>Client Orders</h2>
+<p>For New Order<button type="button" class="btn-link">@Html.ActionLink("Click here", "AddOrder", "ClientOrders")</button></p>
+
+@if (!Model.Any())
+{
+    <p>We have no Order</p>
+}
+else
+{
+    <table class="table table-bordered table-hover" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Client ID
+                </th>
+                <th>
+                    Client Name
+                </th>
+                <th>
+                    Item ID
+                </th>
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Bill
+                </th>
+                <th>
+                    Order Date
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var clientOrders in Model)
+            {
+            <tr>
+                <td class="col-md-1">
+                    @clientOrders.id
+                </td>
+                <td class="col-md-1">
+                    @clientOrders.Clients.id
+                </td>
+                <td class="col-md-2">
+                    @clientOrders.Clients.name
+                </td>
+                <td class="col-md-1">
+                    @clientOrders.Items.id
+                </td>
+                <td class="col-md-2">
+                    @clientOrders.Items.name
+                </td>
+                <td class="col-md-1">
+                    @clientOrders.quantity
+                </td>
+                <td class="col-md-1">
+                    @clientOrders.bill
+                </td>
+                <td class="col-md-2">
+                    @clientOrders.date
+                </td>
+                @if (clientOrders.status.Equals("1"))
+                {
+                    <td class="col-md-1" align="center">
+                        @Html.ActionLink("Edit", "Update", "ClientOrders", new { id = clientOrders.id }, null)
+                    </td>
+                }
+                else
+                {
+                    <td class="col-md-1" align="center">
+                        Edit
+                    </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+
+}

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<InventoryMVC.Models.ClientPayments>
+
+<h2>Client Payments</h2>
+<p>For New Payment<button type="button" class="btn-link">@Html.ActionLink("Click here", "AddPayment", "ClientPayments")</button></p>
+
+@if (!Model.Any())
+{
+    <p>We have no Record</p>
+}
+else
+{
+    <table class="table table-bordered table-hover" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Client ID
+                </th>
+                <th>
+                    Client Name
+                </th>
+                <th>
+                    Amount Paid
+                </th>
+
+                <th>
+                    Date Paid
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var clientPayments in Model)
+            {
+                <tr>
+                    <td class="col-md-1">
+                        @clientPayments.id
+                    </td>
+                    <td class="col-md-1">
+                        @clientPayments.Clients.id
+                    </td>
+                    <td class="col-md-4">
+                        @clientPayments.Clients.name
+                    </td>
+                    <td class="col-md-3">
+                        @clientPayments.amountPaid
+                    </td>
+                    <td class="col-md-3">
+                        @clientPayments.datePaid
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

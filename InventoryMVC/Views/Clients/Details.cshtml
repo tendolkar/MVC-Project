@@ -1,0 +1,184 @@
+﻿@model InventoryMVC.Models.ViewModels.ClientViewModel
+
+<h2>Client Details</h2>
+<div class="container">
+    <div class="col-md-6 ">
+        <div class="row">
+            <div class="col-xs-4">
+                <label>
+                    ID
+                </label>
+            </div>
+            <div class="col-xs-8">
+                @Html.DisplayTextFor(m => m.Client.id)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <label>
+                    Name
+                </label>
+            </div>
+            <div class="col-xs-8">
+                @Html.DisplayTextFor(m => m.Client.name)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <label>
+                    Address
+                </label>
+            </div>
+            <div class="col-xs-8">
+                @Html.DisplayTextFor(m => m.Client.address)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+
+        <div class="row">
+            <div class="col-xs-4">
+                <label>
+                    Contact
+                </label>
+            </div>
+            <div class="col-xs-8">
+
+                @Html.DisplayTextFor(m => m.Client.contact)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <label>
+                    Balance
+                </label>
+
+            </div>
+            <div class="col-xs-8">
+                @Html.DisplayTextFor(m => m.Client.balance)
+            </div>
+
+        </div>
+    </div>
+</div>
+<h3>Orders</h3>
+@if (!Model.ClientOrders.Any())
+{
+    <p>We have no Order</p>
+}
+else
+{
+    <table class="table table-bordered table-hover" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    Order ID
+                </th>
+                <th>
+                    Item ID
+                </th>
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Bill
+                </th>
+                <th>
+                    Order Date
+                </th>
+                <th>
+                    Status
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var clientOrders in Model.ClientOrders)
+            {
+                <tr>
+                    <td class="col-md-1">
+                        @clientOrders.id
+                    </td>
+                    <td class="col-md-1">
+                        @clientOrders.ItemsId
+                    </td>
+                    <td class="col-md-3">
+                        @clientOrders.Items.name
+                    </td>
+
+                    <td class="col-md-1">
+                        @clientOrders.quantity
+                    </td>
+                    <td class="col-md-2">
+                        @clientOrders.bill
+                    </td>
+                    <td class="col-md-2">
+                        @clientOrders.date
+                    </td>
+                    @if (clientOrders.status.Equals("1"))
+                    {
+                        <td class="col-md-2">
+                            Pending
+                        </td>
+                    }
+                    else if (clientOrders.status.Equals("2"))
+                    {
+                        <td class="col-md-2">
+                            Delivered
+                        </td> }
+                    else
+                    {
+                        <td class="col-md-2">
+                            Cancelled
+                        </td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+<h3>Payments</h3>
+@if (!Model.ClientPayments.Any())
+{
+    <p>We have no Payment</p>
+}
+else
+{
+    <table class="table table-bordered table-hover" id="myTable1">
+        <thead>
+            <tr>
+                <th>
+                    Payment ID
+                </th>
+                <th>
+                    Amount Paid
+                </th>
+                <th>
+                    Date Paid
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var clientPayments in Model.ClientPayments)
+            {
+                <tr>
+                    <td class="col-md-2">
+                        @clientPayments.id
+                    </td>
+                    <td class="col-md-4">
+                        @clientPayments.amountPaid
+                    </td>
+                    <td class="col-md-6">
+                        @clientPayments.datePaid
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

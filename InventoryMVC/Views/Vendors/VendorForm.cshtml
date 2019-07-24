@@ -1,0 +1,42 @@
+﻿@model InventoryMVC.Models.Vendors
+
+<h2>Vendor Form</h2>
+        <div class="form-group">
+            @using (Html.BeginForm("Save", "Vendors"))
+            {
+                <div class="form-group">
+                    <label>Name:</label>
+                    @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.name)
+                </div>
+                <div class="form-group">
+                    <label>Address:</label>
+                    @Html.TextBoxFor(m => m.address, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.address)
+                </div>
+                <div class="form-group">
+                    <label>Phone No.:</label>
+                    @Html.TextBoxFor(m => m.contact, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.contact)
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.email)
+                </div>
+                <div class="form-group">
+                    <label>Balance:</label>
+                    @Html.TextBoxFor(m => m.balance, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.balance)
+                </div>
+                @Html.HiddenFor(m => m.id)
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-primary">   Save   </button>
+            }
+
+        </div>
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+}
